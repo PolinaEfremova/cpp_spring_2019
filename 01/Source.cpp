@@ -5,7 +5,7 @@
 #include <math.h> 
 #include "numbers.dat"
 
-int binarysearch(int n) {
+int bynarysearch(int n) {
 	int left = 0, right = Size - 1, middle = 0;
 	while (left <= right) {
 		middle = (left + right) / 2;
@@ -47,8 +47,8 @@ int main(int argc, char* argv[])
 			std::cout << '0';
 			return 0;
 		}
-		int lk = binarysearch(left);
-		int rk = binarysearch(right);
+		int lk = bynarysearch(left);
+		int rk = bynarysearch(right);
 		while (Data[rk] == Data[rk + 1])
 			rk++;
 		int s = counting(lk, rk);
