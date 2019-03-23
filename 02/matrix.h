@@ -83,10 +83,10 @@ public:
 
 	}
 
-	Matrix operator*=(int num) {
+	Matrix operator*=(int scalar) {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
-				mas2[i][j] = mas2[i][j] * num;
+				mas2[i][j] = mas2[i][j] * scalar;
 			}
 		}
 		Matrix multi(*this);
