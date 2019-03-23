@@ -30,7 +30,7 @@ public:
 		}
 
 	}
-	void copy(proxymatrix &obj) {
+	void copymatrix(proxymatrix &obj) {
 		mas = new int[obj.Size];
 		for (int i = 0; i < obj.Size; i++) {
 			mas[i] = obj.mas[i];
@@ -76,7 +76,7 @@ public:
 		rows = obj.rows;
 		mas2 = new proxymatrix[obj.rows];
 		for (int i = 0; i < obj.rows; i++) {
-			mas2[i].copy(obj.mas2[i]);
+			mas2[i].copymatrix(obj.mas2[i]);
 		}
 
 	}
