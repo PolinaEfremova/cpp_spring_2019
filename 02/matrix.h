@@ -44,7 +44,9 @@ private:
 };
 class Matrix {
 public:
-	Matrix(int rows, int cols) :rows(rows), cols(cols) {
+	Matrix(int rows, int cols) 
+		:rows(rows), cols(cols) 
+		{
 		mas2 = new proxymatrix[rows];
 		for (int i = 0; i < rows; i++) {
 			mas2[i].alloc(cols);
@@ -84,7 +86,6 @@ public:
 	Matrix operator*=(int num) {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
-				//multi[i][j] = mas2[i][j] * num;
 				mas2[i][j] = mas2[i][j] * num;
 			}
 		}
@@ -92,7 +93,7 @@ public:
 		return multi;
 	}
 	const bool operator==(const Matrix& other) {
-		if ((cols != other.cols) || (rows != other.rows)) {
+		if (cols != other.cols || rows != other.rows) {
 			return false;
 		}
 		int p = 0;
@@ -105,10 +106,9 @@ public:
 		return true;
 	}
 	const bool operator!=(const Matrix& other) {
-		if ((cols != other.cols) || (rows != other.rows)) {
+		if (cols != other.cols || rows != other.rows) {
 			return true;
 		}
-		int p = 0;
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				if (mas2[i][j] != other.mas2[i][j])
