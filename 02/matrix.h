@@ -27,6 +27,7 @@ private:
 	size_t Size;
 	int *mas = nullptr;
 };
+
 class Matrix {
 public:
 	Matrix(size_t rows, size_t cols)
@@ -59,8 +60,6 @@ public:
 			throw std::out_of_range("");
 		return mas2[i];
 	}
-
-
 	const Matrix &operator*=(int scalar) {
 		Matrix multi(rows,cols); 
 		for (int i = 0; i < rows; i++) {
@@ -84,7 +83,6 @@ public:
 		return true;
 	}
 	bool operator!=(const Matrix& other) {
-
 		if (mas2 == other.mas2) 
 			return false;
 		else return true;
@@ -92,6 +90,6 @@ public:
 private:
 	size_t rows;
 	size_t cols;
-	proxymatrix *mas2;
+	proxymatrix *mas2 = nullptr;
 
 };
