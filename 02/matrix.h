@@ -87,7 +87,8 @@ public:
 	}
 	bool operator!=(const Matrix& other) {
 
-		if (mas2 == other.mas2) return false;
+		if (mas2 == other.mas2) 
+			return false;
 		else return true;
 	}
 private:
