@@ -62,7 +62,6 @@ public:
 
 	const Matrix &operator*=(int scalar) {
 		Matrix multi(rows,cols); 
-
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				multi[i][j]=mas2[i][j]*scalar; 
