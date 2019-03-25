@@ -24,7 +24,7 @@ public:
 
 private:
 	size_t Size;
-	int *mas;
+	int *mas = nullptr;
 };
 class Matrix {
 public:
@@ -93,6 +93,6 @@ public:
 private:
 	size_t rows;
 	size_t cols;
-	proxymatrix *mas2;
+	proxymatrix *mas2 = nullptr;
 
 };
