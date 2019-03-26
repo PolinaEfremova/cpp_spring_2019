@@ -45,10 +45,10 @@ public:
 		}
 		operator delete[](array2d);
 	}
-	int getRows() {
+	size_t getRows() {
 		return rows;
 	}
-	int getColumns() {
+	size_t getColumns() {
 		return cols;
 	}
 	const proxymatrix& operator[](size_t i) const
