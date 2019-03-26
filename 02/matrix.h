@@ -1,31 +1,31 @@
 class proxymatrix {
 public:
 	proxymatrix() {}
-	proxymatrix(size_t cols) 
+	proxymatrix(size_t cols)
 		:Size(cols)
 	{
-		mas = new int[cols];
+		array = new int[cols];
 	}
 	~proxymatrix() {
-		delete[](mas);
+		delete[](array);
 	}
 	const int& operator[](size_t i) const
 	{
 		if (i >= Size)
 			throw std::out_of_range("");
-		return mas[i];
+		return array[i];
 	}
 
 	int& operator[](size_t i)
 	{
 		if (i >= Size)
 			throw std::out_of_range("");
-		return mas[i];
+		return array[i];
 	}
 
 private:
 	size_t Size;
-	int *mas = nullptr;
+	int *array = nullptr;
 };
 
 class Matrix {
@@ -33,13 +33,17 @@ public:
 	Matrix(size_t rows, size_t cols)
 		:rows(rows), cols(cols)
 	{
-		mas2 = new proxymatrix[rows];
+		 array2d = static_cast<proxymatrix*>(operator new[](rows * sizeof(proxymatrix)));
 		for (int i = 0; i < rows; i++) {
-			new(mas2 + i) proxymatrix(cols);
+			new (array2d + i) proxymatrix(cols);
 		}
 	}
 	~Matrix() {
-		delete[](mas2);
+		for (int i = 0; i < rows; i++)
+		{
+			array2d[i].~proxymatrix();
+		}
+		operator delete[](array2d);
 	}
 	int getRows() {
 		return rows;
@@ -51,24 +55,22 @@ public:
 	{
 		if (i >= rows)
 			throw std::out_of_range("");
-		return mas2[i];
+		return array2d[i];
 	}
 
 	proxymatrix& operator[](size_t i)
 	{
 		if (i >= rows)
 			throw std::out_of_range("");
-		return mas2[i];
+		return array2d[i];
 	}
-	const Matrix &operator*=(int scalar) {
-		Matrix multi(rows,cols); 
+	 Matrix &operator*=(int scalar) {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
-				multi[i][j]=mas2[i][j]*scalar; 
-				mas2[i][j] = mas2[i][j] * scalar;
+				array2d[i][j] = array2d[i][j] * scalar;
 			}
 		}
-		return multi;
+		return *this;
 	}
 	bool operator==(const Matrix& other) {
 		if (cols != other.cols || rows != other.rows) {
@@ -76,20 +78,18 @@ public:
 		}
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
-				if (mas2[i][j] != other.mas2[i][j])
+				if (array2d[i][j] != other.array2d[i][j])
 					return false;
 			}
 		}
 		return true;
 	}
 	bool operator!=(const Matrix& other) {
-		if (mas2 == other.mas2) 
-			return false;
-		else return true;
+		return !(array2d == other.array2d);
 	}
 private:
 	size_t rows;
 	size_t cols;
-	proxymatrix *mas2 = nullptr;
+	proxymatrix *array2d = nullptr;
 
 };
