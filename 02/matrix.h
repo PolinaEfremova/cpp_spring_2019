@@ -39,7 +39,7 @@ public:
 		}
 	}
 	~Matrix() {
-		for (int i = 0; i < rows; i++)
+		for (size_t i = 0; i < rows; i++)
 		{
 			array2d[i].~proxymatrix();
 		}
@@ -65,8 +65,8 @@ public:
 		return array2d[i];
 	}
 	 Matrix &operator*=(int scalar) {
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
+		for (size_t i = 0; i < rows; i++) {
+			for (size_t j = 0; j < cols; j++) {
 				array2d[i][j] = array2d[i][j] * scalar;
 			}
 		}
@@ -76,8 +76,8 @@ public:
 		if (cols != other.cols || rows != other.rows) {
 			return false;
 		}
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
+		for (size_t i = 0; i < rows; i++) {
+			for (size_t j = 0; j < cols; j++) {
 				if (array2d[i][j] != other.array2d[i][j])
 					return false;
 			}
