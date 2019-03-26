@@ -34,7 +34,7 @@ public:
 		:rows(rows), cols(cols)
 	{
 		 array2d = static_cast<proxymatrix*>(operator new[](rows * sizeof(proxymatrix)));
-		for (int i = 0; i < rows; i++) {
+		for (size_t i = 0; i < rows; i++) {
 			new (array2d + i) proxymatrix(cols);
 		}
 	}
