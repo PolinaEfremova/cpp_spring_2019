@@ -261,7 +261,7 @@ public:
 		}
 		if (this->sign != other.sign && *this == -other) {
 			newsize_ = 1;
-			sum1[0] = 0 + '0';
+			sum1[0] = '0';
 			sum.sign = true;
 			sum.size_ = newsize_;
 			sum.data_ = new char[newsize_];
@@ -279,7 +279,8 @@ public:
 				sum1[i] = (tmp - '0') % 10 + '0';
 				tmp = (tmp - '0') / 10 + '0';
 			}
-			if ((tmp - '0') == 1) sum1[newsize_ - 1] = 1 + '0';
+			if ((tmp - '0') == 1) 
+				sum1[newsize_ - 1] = 1 + '0';
 			size_t s = 0;
 			while (sum1[newsize_ - s - 1] == '0' && (newsize_ - s - 1) >= 0)
 				s++;
@@ -314,7 +315,7 @@ public:
 
 			}
 			size_t s = 0;
-			if ((tmp - '0') == 0) s = 1;
+			if ((tmp - '0') == 0)  s = 1;
 			for (size_t i = 0; i < newsize_ - s; i++) {
 				sum1[i] = '9' - sum1[i] + '0';
 			}
