@@ -337,14 +337,14 @@ public:
 		delete[] sum1;
 		return sum;
 	}
-	BigInt operator+(const int& num) const {
+	BigInt operator+(const int64_t& num) const {
 		BigInt other = num;
 		return this->operator+(other);
 	}
 	BigInt operator-(const BigInt& other) const {
 		return this->operator+(-(other));
 	}
-	BigInt operator-(const int& num) const {
+	BigInt operator-(const int64_t& num) const {
 		BigInt other = num;
 		return this->operator-(-(other));
 	}
