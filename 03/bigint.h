@@ -230,7 +230,7 @@ public:
 	BigInt operator+(const BigInt& other) const {
 		BigInt sum;
 		size_t newsize_ = std::max(this->size_, other.size_) + 1;
-		char* sum1 = new char[newsize_ + 1];
+		char* sum1 = new char[newsize_];
 		for (size_t i = 0; i < newsize_; i++) {
 			sum1[i] = '0';
 		}
