@@ -42,7 +42,7 @@ public:
 			size_ = k;
 			number = num;
 			char* ptr = new char[size_];
-			//delete[] data_;
+			
 			data_ = ptr;
 			for (size_t i = 0; i < size_; i++) {
 				data_[i] = abs(number) % 10 + '0';
@@ -124,12 +124,14 @@ public:
 			{
 				if (this->data_[i - 1] < other.data_[i - 1])
 				{
-					if (this->sign == false) return true;
+					if (this->sign == false) 
+						return true;
 					else return false;
 				}
 				else if (this->data_[i - 1] > other.data_[i - 1])
 				{
-					if (this->sign == false) return false;
+					if (this->sign == false) 
+						return false;
 					else return true;
 				}
 			}
@@ -176,12 +178,14 @@ public:
 			{
 				if (this->data_[i - 1] < other.data_[i - 1])
 				{
-					if (this->sign == false) return true;
+					if (this->sign == false)
+						return true;
 					else return false;
 				}
 				else if (this->data_[i - 1] > other.data_[i - 1])
 				{
-					if (this->sign == false) return false;
+					if (this->sign == false) 
+						return false;
 					else return true;
 				}
 			}
