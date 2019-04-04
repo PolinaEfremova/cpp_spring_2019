@@ -286,7 +286,7 @@ public:
 				s++;
 			newsize_ = newsize_ - s;
 			sum.size_ = newsize_;
-			sum.data_ = new char[newsize_ + 1];
+			sum.data_ = new char[newsize_];
 			for (size_t i = 0; i < newsize_; i++) {
 				sum.data_[i] = sum1[i];
 			}
