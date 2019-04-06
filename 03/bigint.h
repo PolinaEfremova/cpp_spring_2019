@@ -2,7 +2,7 @@
 #include<algorithm>
 #include<cmath>
 #include <math.h>
-
+#include<memory>
 class BigInt {
 public:
 	BigInt() {
@@ -230,18 +230,18 @@ public:
 	BigInt operator+(const BigInt& other) const {
 		BigInt sum;
 		size_t newsize_ = std::max(this->size_, other.size_) + 1;
-		char* sum1 = new char[newsize_];
+		std::unique_ptr<char[]>sum1(new char[newsize_]);
 		for (size_t i = 0; i < newsize_; i++) {
 			sum1[i] = '0';
 		}
-		char* newthis = new char[newsize_ - 1];
+		std::unique_ptr<char[]>newthis(new char[newsize_ - 1]);
 		for (size_t i = 0; i < this->size_; i++) {
 			newthis[i] = this->data_[i];
 		}
 		for (size_t i = this->size_; i < newsize_ - 1; i++) {
 			newthis[i] = '0';
 		}
-		char* newother = new char[newsize_ - 1];
+		std::unique_ptr<char[]>newother(new char[newsize_ - 1]);
 		for (size_t i = 0; i < other.size_; i++) {
 			newother[i] = other.data_[i];
 		}
@@ -254,9 +254,6 @@ public:
 			sum.sign = 1;
 			sum.data_[0] = '0';
 			sum.size_ = 1;
-			delete[]newother;
-			delete[]newthis;
-			delete[] sum1;
 			return sum;
 		}
 		if (this->sign != other.sign && *this == -other) {
@@ -266,9 +263,6 @@ public:
 			sum.size_ = newsize_;
 			sum.data_ = new char[newsize_];
 			sum.data_[0] = sum1[0];
-			delete[]newother;
-			delete[]newthis;
-			delete[] sum1;
 			return sum;
 		}
 		char tmp = '0';
@@ -290,9 +284,6 @@ public:
 			for (size_t i = 0; i < newsize_; i++) {
 				sum.data_[i] = sum1[i];
 			}
-			delete[] sum1;
-			delete[]newother;
-			delete[]newthis;
 			return sum;
 		}
 		else {
@@ -332,9 +323,6 @@ public:
 		for (size_t i = 0; i < newsize_; i++) {
 			sum.data_[i] = sum1[i];
 		}
-		delete[]newother;
-		delete[]newthis;
-		delete[] sum1;
 		return sum;
 	}
 	BigInt operator+(const int64_t& num) const {
