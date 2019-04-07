@@ -42,7 +42,12 @@ private:
 	}
 	Error process(bool value)
 	{
-		out_ << (value ? "true" : "false") << Separator;
+		if (value) {
+			out_ << "true" << Separator;
+		}
+		else {
+			out_ << "false" << Separator;
+		}
 		return Error::NoError;
 	}
 	template <class... ArgsT>
