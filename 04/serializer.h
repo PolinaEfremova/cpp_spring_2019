@@ -50,11 +50,10 @@ private:
 		}
 		return Error::NoError;
 	}
-	template <class... ArgsT>
-	Error process()
-	{
-		return Error::CorruptedArchive;
-	}
+
+	
+	
+		
 };
 
 class Deserializer
@@ -74,7 +73,7 @@ public:
 	}
 private:
 	std::istream& in_;
-	template <class T, class ...ArgsT>
+	template <class T, class ...A freergsT>
 	Error process(T&& value, ArgsT&&... args)
 	{
 		if (process(value) == Error::CorruptedArchive)
@@ -106,9 +105,5 @@ private:
 				return Error::CorruptedArchive;
 		return Error::NoError;
 	}
-	template <class T>
-	Error process()
-	{
-		return Error::CorruptedArchive;
-	}
+	
 };
