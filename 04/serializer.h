@@ -30,7 +30,7 @@ private:
 	template <class T, class... ArgsT>
 	Error process(T&& value, ArgsT&&... args)
 	{
-		if (process(value) == Error::CorruptedArchive) {
+		if (process(std::forward<T>(value)) == Error::CorruptedArchive) {
 			return Error::CorruptedArchive;
 		}
 		return process(std::forward<ArgsT>(args)...);
@@ -44,11 +44,6 @@ private:
 	{
 		out_ << (value ? "true" : "false") << Separator;
 		return Error::NoError;
-	}
-	template <class... ArgsT>
-	Error process()
-	{
-		return Error::CorruptedArchive;
 	}
 };
 
@@ -72,7 +67,7 @@ private:
 	template <class T, class ...ArgsT>
 	Error process(T&& value, ArgsT&&... args)
 	{
-		if (process(value) == Error::CorruptedArchive)
+		if (process(std::forward<T>(value)) == Error::CorruptedArchive)
 			return Error::CorruptedArchive;
 		else return process(std::forward<ArgsT>(args)...);
 	}
@@ -100,10 +95,5 @@ private:
 			else 
 				return Error::CorruptedArchive;
 		return Error::NoError;
-	}
-	template <class T>
-	Error process()
-	{
-		return Error::CorruptedArchive;
 	}
 };
