@@ -229,6 +229,9 @@ public:
 	}
 	BigInt operator+(const BigInt& other) const {
 		BigInt sum;
+		sum.size_ = 0;
+		sum.sign = true;
+		delete[]sum.data_;
 		size_t newsize_ = std::max(this->size_, other.size_) + 1;
 		std::unique_ptr<char[]>sum1(new char[newsize_]);
 		for (size_t i = 0; i < newsize_; i++) {
