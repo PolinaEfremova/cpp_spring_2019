@@ -42,18 +42,14 @@ private:
 	}
 	Error process(bool value)
 	{
-		if (value) {
-			out_ << "true" << Separator;
-		}
-		else {
-			out_ << "false" << Separator;
-		}
+		out_ << (value ? "true" : "false") << Separator;
 		return Error::NoError;
 	}
-
-	
-	
-		
+	template <class... ArgsT>
+	Error process()
+	{
+		return Error::CorruptedArchive;
+	}
 };
 
 class Deserializer
@@ -73,7 +69,7 @@ public:
 	}
 private:
 	std::istream& in_;
-	template <class T, class ...A freergsT>
+	template <class T, class ...ArgsT>
 	Error process(T&& value, ArgsT&&... args)
 	{
 		if (process(value) == Error::CorruptedArchive)
@@ -105,5 +101,9 @@ private:
 				return Error::CorruptedArchive;
 		return Error::NoError;
 	}
-	
+	template <class T>
+	Error process()
+	{
+		return Error::CorruptedArchive;
+	}
 };
